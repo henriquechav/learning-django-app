@@ -1,0 +1,25 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<div class="content-wrapper">
+    <h1>Sign In Now</h1>
+
+    {% for message in messages %}
+    <h5>{{message}}</h5>
+    {% endfor %}
+
+    <form method="POST" action="login">
+        {% csrf_token %}
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+
+        <input class="submit-btn" type="submit">
+    </form>
+    <p>Don't have an account? Sign up <a href="register">here</a>.</p>
+    <p>Or enter without loggin <a href="/">here</a>.</p>
+</div>

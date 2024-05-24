@@ -1,0 +1,29 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}" />
+
+<div class="content-wrapper">
+  {% if user.is_authenticated %}
+  <h1>Welcome, {{user.username}}!</h1>
+  <a href="logout">logout</a>
+  {% else %}
+  <a href="login">login</a>
+  {% endif %}
+
+  <h1>How many words are in your text?</h1>
+  <form method="POST" action="counter">
+    {% csrf_token %}
+    <textarea name="text" rows="10" cols="50"></textarea>
+    <input type="submit" />
+  </form>
+  <h2>List of features:</h2>
+  {% for feature in features %}
+  
+  <p><b>{{feature.name}}</b> -> {{feature.details}} Learn more <a href='post/{{feature.name}}'>here</a>.</p>
+  
+    {% if feature.name == 'Quick' %}
+    <p>This feature says our site is quick.</p>
+    {% endif %} 
+  
+  {% endfor %}
+</div>
